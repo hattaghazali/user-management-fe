@@ -1,0 +1,6 @@
+@import 'tailwindcss';
+@custom-variant dark (&:where(.dark, .dark *));
+
+body {
+    @apply bg-orange-100 text-black;
+}
