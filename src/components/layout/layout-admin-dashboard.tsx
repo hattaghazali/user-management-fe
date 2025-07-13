@@ -14,25 +14,8 @@ import {
     BreadcrumbPage,
     BreadcrumbSeparator
 } from '../ui/breadcrumb';
-import { useEffect } from 'react';
-import { useDispatch, useSelector } from 'react-redux';
-import { RootState } from '@reduxjs/toolkit/query';
-import { useGetUserInfoQuery } from '@/redux/features/auth/auth-api';
-import { setUserInfo } from '@/redux/features/auth/auth-slice';
 
 export default function LayoutAdminDashBoard() {
-    const dispatch = useDispatch();
-    const token = useSelector((state: RootState) => state.auth.token);
-    const { data: userInfo, isLoading } = useGetUserInfoQuery(undefined, {
-        skip: !token
-    });
-
-    // Update Redux store with user info
-    useEffect(() => {
-        if (userInfo) {
-            dispatch(setUserInfo(userInfo));
-        }
-    }, [userInfo, dispatch]);
     return (
         <SidebarProvider>
             <AppSidebar />
@@ -61,8 +44,7 @@ export default function LayoutAdminDashBoard() {
                         </Breadcrumb>
                     </div>
                 </header>
-                <main>
-                    {/* <main className='p-4'> */}
+                <main className='p-4'>
                     <Outlet />
                 </main>
             </SidebarInset>
