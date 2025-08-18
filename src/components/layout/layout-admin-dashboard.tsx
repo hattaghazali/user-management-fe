@@ -10,9 +10,7 @@ import {
     Breadcrumb,
     BreadcrumbItem,
     BreadcrumbLink,
-    BreadcrumbList,
-    BreadcrumbPage,
-    BreadcrumbSeparator
+    BreadcrumbList
 } from '../ui/breadcrumb';
 
 export default function LayoutAdminDashBoard() {
@@ -31,15 +29,15 @@ export default function LayoutAdminDashBoard() {
                             <BreadcrumbList>
                                 <BreadcrumbItem className='hidden md:block'>
                                     <BreadcrumbLink asChild>
-                                        <Link to='/admin'>Home</Link>
+                                        <Link to='/admin/home'>Home</Link>
                                     </BreadcrumbLink>
                                 </BreadcrumbItem>
-                                <BreadcrumbSeparator className='hidden md:block' />
-                                <BreadcrumbItem>
+                                {/* <BreadcrumbSeparator className='hidden md:block' /> */}
+                                {/* <BreadcrumbItem>
                                     <BreadcrumbPage>
                                         Data Fetching
                                     </BreadcrumbPage>
-                                </BreadcrumbItem>
+                                </BreadcrumbItem> */}
                             </BreadcrumbList>
                         </Breadcrumb>
                     </div>
