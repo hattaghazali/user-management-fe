@@ -6,16 +6,12 @@ import {
 import { fetchBaseQuery, FetchBaseQueryError } from '@reduxjs/toolkit/query';
 import { CONST_API_BASE } from '@/configs/constants';
 import { clearAccessToken } from '@/redux/features/auth/auth-slice';
+import { IAPIError, IAPIResponse } from '@/types/type-api';
 
 interface IRootState {
     auth: {
         token?: string;
     };
-}
-
-interface IApiErrorResponse {
-    success?: boolean;
-    message: string;
 }
 
 interface IBaseQueryExtraOptions {}
@@ -37,9 +33,10 @@ const baseQueryWithAuth = async (
     extraOptions: IBaseQueryExtraOptions
 ) => {
     const result = await baseQuery(args, api, extraOptions);
+    // console.log(result);
     if (result.error && (result.error as FetchBaseQueryError).status === 401) {
         api.dispatch(clearAccessToken());
-        const errorData = result.error.data as IApiErrorResponse | undefined;
+        const errorData = result.error.data as IAPIResponse<null> | undefined;
         if (
             !errorData ||
             typeof errorData !== 'object' ||
@@ -47,9 +44,10 @@ const baseQueryWithAuth = async (
         ) {
             // Fallback if backend response is malformed
             result.error.data = {
-                success: false,
-                message: 'Authentication error occurred.'
-            } as IApiErrorResponse;
+                results: null,
+                message: 'Authentication error occurred.',
+                success: false
+            } as IAPIError;
         }
         // Use backend's message directly (e.g., "Invalid or missing Authorization header")
     }
