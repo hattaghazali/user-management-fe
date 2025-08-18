@@ -94,17 +94,17 @@ const PageEditAUser = () => {
     // });
 
     useEffect(() => {
-        console.log('User data:', user);
+        // console.log('User data:', user);
         if (user) {
-            console.log('Setting form values:', {
-                name: user.name || '',
-                email: user.email || '',
-                gender: user.gender,
-                occupation: user.occupation,
-                state: user.state,
-                status: user.status,
-                profileImage: user.avatar?.img_url
-            });
+            // console.log('Setting form values:', {
+            //     name: user.name || '',
+            //     email: user.email || '',
+            //     gender: user.gender,
+            //     occupation: user.occupation,
+            //     state: user.state,
+            //     status: user.status,
+            //     profileImage: user.avatar?.img_url
+            // });
 
             // Set preview URL to current user avatar
             if (user.avatar?.img_url) {
@@ -123,9 +123,9 @@ const PageEditAUser = () => {
             }, 100); // Adjust delay if needed (0-1000ms works in reported cases)
 
             // Check form values after reset (your existing timeout)
-            setTimeout(() => {
-                console.log('Form values after reset:', form.getValues());
-            }, 100);
+            // setTimeout(() => {
+            //     console.log('Form values after reset:', form.getValues());
+            // }, 100);
         }
     }, [user, form]);
 
@@ -141,7 +141,7 @@ const PageEditAUser = () => {
                 state: data.state,
                 status: data.status
             };
-            console.log('the data', data);
+            // console.log('the data', data);
 
             await editUserInfo({ id, payload }).unwrap();
             toast.success('User information updated successfully');
