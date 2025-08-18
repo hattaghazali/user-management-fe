@@ -6,7 +6,7 @@ import PageAdminProfile from '@/pages/admin/page-admin-profile';
 import PageUsersList from '@/pages/admin/page-users-list';
 import PageCreateUser from '@/pages/admin/page-create-user';
 import PageDashboardNotFound from '@/pages/admin/page-dashboard-not-found';
-import PageTesting from '@/pages/admin/page-testing';
+// import PageTesting from '@/pages/admin/page-testing';
 import ProtectedRoute from '@/components/protected-route';
 import PageUserDetails from '@/pages/admin/page-user-details';
 import PageEditAUser from '@/pages/admin/page-edit-user';
@@ -53,10 +53,10 @@ const router = createBrowserRouter([
                             }
                         ]
                     },
-                    {
-                        path: 'testing',
-                        element: <PageTesting />
-                    },
+                    // {
+                    //     path: 'testing',
+                    //     element: <PageTesting />
+                    // },
                     {
                         path: '*',
                         element: <PageDashboardNotFound />
