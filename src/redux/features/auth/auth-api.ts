@@ -1,4 +1,5 @@
 import { baseApi } from '@/redux/base-api';
+import { IUser } from '@/types/type-user';
 
 interface ILoginPayload {
     email: string;
@@ -10,19 +11,6 @@ interface ILoginResponse {
     accessToken?: string | null;
 }
 
-interface IUserInfoResponse {
-    _id: string;
-    u_email: string;
-    u_name: string;
-    u_gender: number;
-    u_occupation: number;
-    u_state: number;
-    u_status: number;
-    createdAt: string;
-    updatedAt: string;
-    __v: number;
-}
-
 export const loginApi = baseApi.injectEndpoints({
     endpoints: (builder) => ({
         login: builder.mutation<ILoginResponse, ILoginPayload>({
@@ -32,7 +20,7 @@ export const loginApi = baseApi.injectEndpoints({
                 body: credentials
             })
         }),
-        getUserInfo: builder.query<IUserInfoResponse, void>({
+        getUserInfo: builder.query<IUser, void>({
             query: () => ({
                 url: '/admin/get-info',
                 method: 'GET'
