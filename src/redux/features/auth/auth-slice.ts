@@ -1,10 +1,11 @@
+import { IUser } from '@/types/type-user';
 import { createSlice, PayloadAction } from '@reduxjs/toolkit';
 
 interface IAuthState {
     token: string | null;
     isAuthorized: boolean;
     isTest: boolean;
-    userInfo?: IUserInfo | null;
+    userInfo?: IUser | null;
 }
 
 const initialState: IAuthState = {
@@ -13,19 +14,6 @@ const initialState: IAuthState = {
     isTest: false,
     userInfo: null
 };
-
-interface IUserInfo {
-    _id: string;
-    u_email: string;
-    u_name: string;
-    u_gender: number;
-    u_occupation: number;
-    u_state: number;
-    u_status: number;
-    createdAt: string;
-    updatedAt: string;
-    __v: number;
-}
 
 const authSlice = createSlice({
     name: 'auth',
@@ -36,7 +24,7 @@ const authSlice = createSlice({
             state.isAuthorized = true;
             localStorage.setItem('accessToken', action.payload);
         },
-        setUserInfo(state, action: PayloadAction<IUserInfo>) {
+        setUserInfo(state, action: PayloadAction<IUser>) {
             state.userInfo = action.payload;
         },
         clearAccessToken(state) {
